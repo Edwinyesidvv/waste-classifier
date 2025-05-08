@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { analyzeImage } from '../api/vision';
 import { calculatePoints, getDiscountByPoints, weeklyChallengeBonus } from '../utils/scoring';
+import './WasteClassifier.css';
 
 const WasteUploader = () => {
   const [image, setImage] = useState(null);
@@ -41,8 +42,10 @@ const WasteUploader = () => {
     });
   };
 
+  
   return (
-    <div style={{ padding: 20 }}>
+    <div className="container">
+    <div className="card">
       <h1>Clasificador de Residuos</h1>
       <input type="file" accept="image/*" onChange={handleImageChange} />
       <select value={category} onChange={(e) => setCategory(e.target.value)}>
@@ -52,14 +55,15 @@ const WasteUploader = () => {
         <option value="glass">Vidrio</option>
         <option value="metal">Metal</option>
       </select>
-      <button onClick={handleEvaluation}>Subir y Evaluar</button>
-
+      <button onClick={handleEvaluation}>Evaluar Clasificación</button>
       <div style={{ marginTop: 20 }}>
         <p><strong>Puntos acumulados:</strong> {points}</p>
         <p><strong>Fotos buenas enviadas:</strong> {photosSubmitted}</p>
         <p><strong>Descuento actual:</strong> {discount}%</p>
       </div>
     </div>
+  </div>
+    
   );
 };
 
